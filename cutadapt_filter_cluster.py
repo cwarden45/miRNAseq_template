@@ -55,9 +55,9 @@ text = text + "#$ -cwd\n"
 text = text + "#$ -V\n"
 outHandle.write(text)
 
-#comment out if already installed
+#uncomment out if you need to install the latest version of cutadapt
 text = "pip install --user --upgrade cutadapt\n"
-outHandle.write(text)
+#outHandle.write(text)
 
 fileResults = os.listdir(readsFolder)
 
