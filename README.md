@@ -20,18 +20,18 @@ to create a .gtf file that only contains the "high-confidence" miRNA for your ma
 
 Reference preparation scripts don't use parameter file, so you'll need to edit the code directly.
 
-1) Trim first 3 nt and remove adapters using `cutadapt_filter_cluster.py`.
+#### 1) Trim first 3 nt and remove adapters using `cutadapt_filter_cluster.py`.
 
-2) Calculate cutadapt statistics using `cutadapt_filter_statistics.py`
+#### 2) Calculate cutadapt statistics using `cutadapt_filter_statistics.py`
 
 You'll need to parse FastQC output to calculate the cutadapt statistics.  
 If those files are not already available, they can be produced using `cluster_FastQC.py` from the [Exome_Workflow](https://github.com/cwarden45/DNAseq_templates/tree/master/Exome_Workflow)
 
-3) Align reads using Bowtie `align_Bowtie_cluster.py`
+#### 3) Align reads using Bowtie `align_Bowtie_cluster.py`
 
-4) Calculate alignment stats using `collect_flagstat_stats.py`
+#### 4) Calculate alignment stats using `collect_flagstat_stats.py`
 
-5) Quantify read counts using ``.  You could potentially also quantify other smRNA with HT-Seq using scripts from the (TopHat_Workflow)[https://github.com/cwarden45/RNAseq_templates/tree/master/TopHat_Workflow]
+#### 5) Quantify read counts using ``.  You could potentially also quantify other smRNA with HT-Seq using scripts from the (TopHat_Workflow)[https://github.com/cwarden45/RNAseq_templates/tree/master/TopHat_Workflow]
 
 
 ### Dependencies (some optional) ###
