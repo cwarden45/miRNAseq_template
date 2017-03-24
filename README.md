@@ -24,8 +24,7 @@ Reference preparation scripts don't use parameter file, so you'll need to edit t
 
 #### 2) Calculate cutadapt statistics using `cutadapt_filter_statistics.py`
 
-You'll need to parse FastQC output to calculate the cutadapt statistics.  
-If those files are not already available, they can be produced using `cluster_FastQC.py` from the [Exome_Workflow](https://github.com/cwarden45/DNAseq_templates/tree/master/Exome_Workflow)
+You'll need to parse FastQC output to calculate the cutadapt statistics.  If those files are not already available, they can be produced using `cluster_FastQC.py`.
 
 #### 3) Align reads using Bowtie `align_Bowtie_cluster.py`
 
