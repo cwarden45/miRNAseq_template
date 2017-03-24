@@ -87,6 +87,6 @@ for file in fileResults:
 			text = "rm " +  trim1 + "\n"
 			outHandle.write(text)
 			
-			command = "gzip " + read1
-			os.system(command)
+			text = "gzip " + read1 + "\n"
+			outHandle.write(text)
 			
