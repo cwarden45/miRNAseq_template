@@ -107,7 +107,6 @@ Biopython: http://biopython.org/wiki/Biopython
 |Threads|Number of Threads for TopHat Alignment|
 |miRNA_GTF|miRbase mature miRNA GTF|
 |other_GTF|GTF with quantifications for other genes in separate quantification (no overlap between mature and primary miRNA annotations)|
-|HTseq_input_folder|Path to folder containing GTF gene information|
 |sample_description_file|Name of Sample Description File|
 |total_counts_file|Name of File to Contain Total Read Counts and Cutadapt-Filtered Read Counts|
 |aligned_stats_file|Name of File to Contain Aligned Read Counts|
