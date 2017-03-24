@@ -77,7 +77,7 @@ for file in fileResults:
 			text = text + "#$ -M "+email+"\n"
 			text = text + "#$ -m bea\n"
 			text = text + "#$ -N miB"+str(jobCount)+"\n"
-			text = text + "#$ -q short.q\n"
+			text = text + "#$ -q all.q\n"
 			text = text + "#$ -l vf=4G\n"
 			text = text + "#$ -j yes\n"
 			text = text + "#$ -o miB"+str(jobCount)+".log\n"
