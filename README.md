@@ -3,7 +3,7 @@ Template for analysis of Illumina miRNA-Seq data
 
 ### Order to Run Scripts ###
 
-#0) Prepare miRbase reference GTF
+# 0) Prepare miRbase reference GTF
 
 If you wish to directly compare alignments for miRNA expression for an earlier build (such as hg19),
 you'll need to liftOver the annotation file (which you can do using `liftOver_GFF.py`).
