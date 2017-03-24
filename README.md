@@ -31,7 +31,7 @@ If those files are not already available, they can be produced using `cluster_Fa
 
 #### 4) Calculate alignment stats using `collect_flagstat_stats.py`
 
-#### 5) Quantify read counts using ``.  You could potentially also quantify other smRNA with HT-Seq using scripts from the (TopHat_Workflow)[https://github.com/cwarden45/RNAseq_templates/tree/master/TopHat_Workflow]
+#### 5) Quantify read counts using ``.  You could potentially also quantify other smRNA with HT-Seq using scripts from the [TopHat_Workflow](https://github.com/cwarden45/RNAseq_templates/tree/master/TopHat_Workflow)
 
 
 ### Dependencies (some optional) ###
