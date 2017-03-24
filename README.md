@@ -34,11 +34,11 @@ You'll need to parse FastQC output to calculate the cutadapt statistics.  If tho
 
 These scripts are slightly different than those used in [TopHat_Workflow](https://github.com/cwarden45/RNAseq_templates/tree/master/TopHat_Workflow).  More specifically, only counts are tabulated (without RPKM values) and two types of counts are provided: mature miRNA and "other" genes.  For miRNAs, HT-Seq is switched to "intersection-strict" and featureCounts is run with "-M --fracOverlap 1".  The script `combine_gtf.py` can create the "other" gene table as a mix of UCSC RepeatMasker rRNA (with download instructions in comments), UCSC tRNA, and the gene annotations from [Genome_Ref_Code](https://github.com/cwarden45/RNAseq_templates/tree/master/Genome_Ref_Code) (includes primary miRNA and snoRNAs, for example).
 
-#### 6) Calculate Count-Per-Million (CPM) abundance
+#### 6) Calculate Count-Per-Million (CPM) abundance using `calculate_cpm.R`
 
-#### 7) QC plots
+#### 7) QC plots using `qc.R`
 
-#### 8) Differential expression
+#### 8) Differential expression using `DEG_miRNA.R`
 
 ### Dependencies (some optional) ###
 
