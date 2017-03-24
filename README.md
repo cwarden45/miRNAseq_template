@@ -13,7 +13,7 @@ in gene_id, mature gene id for transcript_id, and the gene name in gene_name).  
 you need to filter the primary transcripts to avoid flagging the mature miRNAs as ambiguous (some miRNA have identical sequences
 in multiple locations, but the script will give you an idea of how many sequence you'd be excluding if you require unique mappings).
 For some programs, you may also need annotations in GTF format rather than GFF format.  Also, by default, Bowtie wil only report 1
-alignment per read (but "-m 1" would need to be added for that alignment to be unique).  All quantifications assume gene on same strand as read. 
+alignment per read (but "-m 1" would need to be added for that alignment to be unique).
 
 mirBase also provides FASTA files for "high-confidence" miRNA.  You can use `extract_mature_miRNA_high_confidence.py`
 to create a .gtf file that only contains the "high-confidence" miRNA for your mapping.
@@ -32,7 +32,7 @@ You'll need to parse FastQC output to calculate the cutadapt statistics.  If tho
 
 #### 5) Quantify read counts.  You can use your read counting method of choice, as long as the format matches input for the CPM function (miRNA in 1st column, final sample names for remaining columns).  Alternatively, you can use `cluster_HTseq_counts.py` or `run_featureCounts.py`.
 
-These scripts are slightly different than those used in [TopHat_Workflow](https://github.com/cwarden45/RNAseq_templates/tree/master/TopHat_Workflow).  More specifically, only counts are tabulated (without RPKM values) and two types of counts are provided: mature miRNA and "other" genes.  For miRNAs, HT-Seq is switched to "intersection-strict" and featureCounts is run with "-M --fracOverlap 1".  The script `combine_gtf.py` can create the "other" gene table as a mix of UCSC RepeatMasker rRNA (with download instructions in comments), UCSC tRNA, and the gene annotations from [Genome_Ref_Code](https://github.com/cwarden45/RNAseq_templates/tree/master/Genome_Ref_Code) (includes primary miRNA and snoRNAs, for example).
+These scripts are slightly different than those used in [TopHat_Workflow](https://github.com/cwarden45/RNAseq_templates/tree/master/TopHat_Workflow).  More specifically, only counts are tabulated (without RPKM values) and two types of counts are provided: mature miRNA and "other" genes.  For miRNAs, HT-Seq is switched to "intersection-strict" and featureCounts is run with "-M --fracOverlap 1".  The script `combine_gtf.py` can create the "other" gene table as a mix of UCSC RepeatMasker rRNA (with download instructions in comments), UCSC tRNA, and the gene annotations from [Genome_Ref_Code](https://github.com/cwarden45/RNAseq_templates/tree/master/Genome_Ref_Code) (includes primary miRNA and snoRNAs, for example).  All quantifications assume gene on same strand as read. 
 
 #### 6) Calculate Count-Per-Million (CPM) abundance using `calculate_htseq_cpm.R`, `calculate_featureCounts_cpm.R`, or `calculate_custom_cpm.R` (allows use of any set of gene counts)
 
