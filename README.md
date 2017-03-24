@@ -20,7 +20,7 @@ to create a .gtf file that only contains the "high-confidence" miRNA for your ma
 
 Reference preparation scripts don't use parameter file, so you'll need to edit the code directly.
 
-#### 1) Trim first 3 nt and remove adapters using `cutadapt_filter_cluster.py`.
+#### 1) Trim first 3 nt and remove adapters using `cutadapt_filter.py` or `cutadapt_filter_cluster.py`.
 
 #### 2) Calculate cutadapt statistics using `cutadapt_filter_statistics.py`
 
