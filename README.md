@@ -13,7 +13,7 @@ in gene_id, mature gene id for transcript_id, and the gene name in gene_name).  
 you need to filter the primary transcripts to avoid flagging the mature miRNAs as ambiguous (some miRNA have identical sequences
 in multiple locations, but the script will give you an idea of how many sequence you'd be excluding if you require unique mappings).
 For some programs, you may also need annotations in GTF format rather than GFF format.  Also, by default, Bowtie wil only report 1
-alignment per read (but "-m 1" would need to be added for that alignment to be unique). 
+alignment per read (but "-m 1" would need to be added for that alignment to be unique).  All quantifications assume gene on same strand as read. 
 
 mirBase also provides FASTA files for "high-confidence" miRNA.  You can use `extract_mature_miRNA_high_confidence.py`
 to create a .gtf file that only contains the "high-confidence" miRNA for your mapping.
