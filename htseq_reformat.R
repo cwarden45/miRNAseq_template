@@ -223,7 +223,7 @@ total.million.aligned.reads = aligned.reads / 1000000
 CPM = t(apply(count.mat, 1, normalizeTotalExpression, totalReads = total.million.aligned.reads))
 colnames(CPM) = sample.label
 
-trimmed.percent = apply(CPM, 2, trimmed.counts, min.percent=0.3, max.percent=0.95)
+trimmed.percent = round(apply(CPM, 2, trimmed.counts, min.percent=0.3, max.percent=0.95))
 
 expressed.gene.counts = apply(CPM, 2, count.defined.values, expr.cutoff = min.expression)
 percent.expressed.genes = round( 100 * expressed.gene.counts / nrow(CPM), digits=1)
