@@ -23,7 +23,7 @@ CPM_norm	aligned
 counts_file	read_counts.txt
 cpm_expression_cutoff	5
 minimum_fraction_expressed	0.5
-fold_change_cutoff	1.5
+fold_change_cutoff	2
 cor_cutoff	0.2
 pvalue_cutoff	0.05
 fdr_cutoff	0.05
