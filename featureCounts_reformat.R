@@ -138,7 +138,7 @@ miRNA.reads = apply(count.mat, 2, sum)
 percent.miRNA.reads = round(100 * miRNA.reads / aligned.reads, digits=1)
 
 total.million.aligned.reads = aligned.reads / 1000000
-CPM = t(apply(count.mat, 1, normalizeTotalExpression, totalReads = total.million.aligned.reads))
+CPM = round(t(apply(count.mat, 1, normalizeTotalExpression, totalReads = total.million.aligned.reads)))
 colnames(CPM) = sample.label
 
 annotated.cpm = data.frame(genes, CPM)
@@ -206,7 +206,7 @@ miRNA.reads = apply(count.mat, 2, sum)
 percent.miRNA.reads = round(100 * miRNA.reads / aligned.reads, digits=1)
 
 total.million.aligned.reads = aligned.reads / 1000000
-CPM = t(apply(count.mat, 1, normalizeTotalExpression, totalReads = total.million.aligned.reads))
+CPM = round(t(apply(count.mat, 1, normalizeTotalExpression, totalReads = total.million.aligned.reads)))
 colnames(CPM) = sample.label
 
 trimmed.percent = apply(CPM, 2, trimmed.counts, min.percent=0.3, max.percent=0.95)
