@@ -108,7 +108,7 @@ for (group in plot.groups){
 			
 			if(i == 1)
 				{
-					den <- density(data, na.rm=T,from=expr.min, to=expr.max)
+					den <- density(data, na.rm=T,from=expr.min, to=expr.max, adjust=2)
 					expr <- den$x
 					freq <- den$y
 					plot(expr, freq, type="l", xlab = paste("Log2(CPM + 1) Expression",sep=""), ylab = "Density",
@@ -118,7 +118,7 @@ for (group in plot.groups){
 				}#end if(i == 1)
 			else
 				{
-					den <- density(data, na.rm=T,from=expr.min, to=expr.max)
+					den <- density(data, na.rm=T,from=expr.min, to=expr.max, adjust=2)
 					expr <- den$x
 					freq <- den$y
 					lines(expr, freq, type = "l", col=labelColors[i])
