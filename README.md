@@ -112,7 +112,7 @@ Biopython: http://biopython.org/wiki/Biopython
 |aligned_stats_file|Name of File to Contain Aligned Read Counts|
 |cluster_distance| Distance metric for dendrogram.  Can be *Euclidean* or *Pearson_Dissimilarity*|
 |cpm_file|Name of File to Contain Rounded CPM Expression Values|
-|CPM_norm|How to count number of aligned reads: *aligned* or *quantified*|
+|CPM_norm|How to count number of aligned reads: *aligned*, *miRNA*, or *quantified-other*|
 |counts_file|Name of File to Contain Read Counts Per Gene|
 |cpm_expression_cutoff|Minimum Robust Expression Level (used for filtering genes for differential expression and calculating robust miRNA percent)|
 |minimum_fraction_expressed|Minimum fraction of samples with expression above *cpm_expression_cutoff*. Filter for differential expression analysis.|
