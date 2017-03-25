@@ -114,7 +114,7 @@ Biopython: http://biopython.org/wiki/Biopython
 |cpm_file|Name of File to Contain Rounded CPM Expression Values|
 |CPM_norm|How to count number of aligned reads: *aligned* or *quantified*|
 |counts_file|Name of File to Contain Read Counts Per Gene|
-|cpm_expression_cutoff|Rounding Value for CPM (minimum reliable expression level)|
+|cpm_expression_cutoff|Minimum Robust Expression Level (used for filtering genes for differential expression and calculating robust miRNA percent)|
 |minimum_fraction_expressed|Minimum fraction of samples with expression above *cpm_expression_cutoff*. Filter for differential expression analysis.|
 |fold_change_cutoff|Minimum fold-change difference to consider a gene differentially expressed.  For miRNA-Seq, fold-change values are calculated from log2(CPM + 1) values, and *cpm_expression_cutoff* is only used for filtering miRNAs.|
 |cor_cutoff|If using a continuous variable, minimum absolute correlation to consider a gene differentially expressed|
