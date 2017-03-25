@@ -97,7 +97,8 @@ for file in fileResults:
 			outHandle.write(text)
 									
 			alnBam = outputSubfolder + "/aligned.bam"
-			text = "samtools view -bS -F 4 " + alnSam + " > " + alnBam + "\n"
+			#can add "-F 4" to exclude unaligned reads
+			text = "samtools view -bS " + alnSam + " > " + alnBam + "\n"
 			outHandle.write(text)
 			
 			userBam = alignmentFolder + "/" + sample + ".bam"
