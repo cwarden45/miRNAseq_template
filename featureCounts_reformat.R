@@ -128,7 +128,6 @@ write.table(annotated.counts, file=result.file, row.names=F, quote=F, sep="\t")
 
 #miRNA counts
 count.files = as.character(sample.table$miRNA.featureCounts.files)
-count.files = gsub(".txt$","_HQ.txt",count.files)
 
 temp.file = count.files[[1]]
 temp.table = read.table(temp.file, sep="\t", header=T)
