@@ -63,7 +63,6 @@ print(total.reads.table$TotalReads)
 
 aligned.stat.table = read.table(aligned.stat.file, header=T, sep="\t")
 alignedID = as.character(aligned.stat.table$SampleID)
-alignedID = gsub("-",".",alignedID)
 aligned.stat.table = aligned.stat.table[match(sampleID, alignedID),]
 total.reads = as.numeric(total.reads.table$TotalReads)
 percent.cutadapt.pass = as.character(total.reads.table$Percent.Cutadapt.Filtered)
