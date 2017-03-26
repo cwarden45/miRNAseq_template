@@ -63,22 +63,14 @@ print(total.reads.table$TotalReads)
 
 aligned.stat.table = read.table(aligned.stat.file, header=T, sep="\t")
 alignedID = as.character(aligned.stat.table$SampleID)
+alignedID = gsub("-",".",alignedID)
 aligned.stat.table = aligned.stat.table[match(sampleID, alignedID),]
 total.reads = as.numeric(total.reads.table$TotalReads)
 percent.cutadapt.pass = as.character(total.reads.table$Percent.Cutadapt.Filtered)
 percent.aligned.reads = as.character(aligned.stat.table$Percent.Aligned)
 
-if(aligned.type == "aligned"){
-	aligned.reads = as.numeric(aligned.stat.table$Bowtie.Aligned.Reads)
-} else if(aligned.type =="quantified"){
-	aligned.reads=apply(count.mat, 2, sum)
-}else {
-	stop("Print CPM_norm must be either 'aligned' or 'quantified'")
-}#end else
-
-#create tables for other genes
+#other counts
 other.counts.file = gsub(".txt$","_other.txt",counts.file)
-other.cpm.file = gsub(".txt$","_other.txt",cpm.file)
 
 count.files = as.character(sample.table$other.featureCounts.files)
 
@@ -86,8 +78,8 @@ temp.file = count.files[[1]]
 temp.table = read.table(temp.file, sep="\t", header=T)
 genes = as.character(temp.table[[1]])
 
-count.mat = matrix(nrow=nrow(temp.table), ncol=length(sampleID))
-colnames(count.mat) = sample.label
+other.count.mat = matrix(nrow=nrow(temp.table), ncol=length(sampleID))
+colnames(other.count.mat) = sample.label
 
 matched.genes = c()
 
@@ -107,14 +99,14 @@ for (i in 1:length(sampleID)){
 		} else {
 			matched.genes = temp.genes[match(genes, temp.genes, nomatch=0)]
 		}#end else
-	} else {
-		count.mat[,i] = temp.table[[7]]
+	}else {
+		other.count.mat[,i] = temp.table[[7]]
 	}#end else
 }#end for (i in 1:length(sampleID))
 
 if (length(matched.genes) != 0){
-	count.mat = matrix(nrow=length(matched.genes), ncol=length(sampleID))
-	colnames(count.mat) = sample.label
+	other.count.mat = matrix(nrow=length(matched.genes), ncol=length(sampleID))
+	colnames(other.count.mat) = sample.label
 	
 	for (i in 1:length(sampleID)){
 	temp.file = count.files[[i]]
@@ -122,40 +114,28 @@ if (length(matched.genes) != 0){
 	temp.genes = as.character(temp.table[[1]])
 	temp.counts = temp.table[[7]]
 	
-	count.mat[,i] = temp.counts[match(matched.genes, temp.genes, nomatch=0)]
+	other.count.mat[,i] = temp.counts[match(matched.genes, temp.genes, nomatch=0)]
 	}#end for (i in 1:length(sampleID))
 	
 	genes = matched.genes
 }#end if (length(matched.genes) != 0)
 
-annotated.counts = data.frame(genes,count.mat)
+annotated.counts = data.frame(genes, other.count.mat)
 write.table(annotated.counts, file = other.counts.file, sep="\t", row.names=F, quote=T)
 
 result.file = paste(user.folder,other.counts.file,sep="/")
 write.table(annotated.counts, file=result.file, row.names=F, quote=F, sep="\t")
 
-miRNA.reads = apply(count.mat, 2, sum)
-percent.miRNA.reads = round(100 * miRNA.reads / aligned.reads, digits=1)
-
-total.million.aligned.reads = aligned.reads / 1000000
-CPM = round(t(apply(count.mat, 1, normalizeTotalExpression, totalReads = total.million.aligned.reads)))
-colnames(CPM) = sample.label
-
-annotated.cpm = data.frame(genes, CPM)
-write.table(annotated.cpm, file = other.cpm.file, sep="\t", row.names=F, quote=T)
-
-result.file = paste(user.folder, other.cpm.file, sep="/")
-write.table(annotated.cpm, file=result.file, row.names=F, quote=F, sep="\t")
-
-#create miRNA tables
+#miRNA counts
 count.files = as.character(sample.table$miRNA.featureCounts.files)
+count.files = gsub(".txt$","_HQ.txt",count.files)
 
 temp.file = count.files[[1]]
 temp.table = read.table(temp.file, sep="\t", header=T)
 miRNA = as.character(temp.table[[1]])
 
-count.mat = matrix(nrow=nrow(temp.table), ncol=length(sampleID))
-colnames(count.mat) = sample.label
+miRNA.count.mat = matrix(nrow=nrow(temp.table), ncol=length(sampleID))
+colnames(miRNA.count.mat) = sample.label
 
 matched.genes = c()
 
@@ -176,7 +156,7 @@ for (i in 1:length(sampleID)){
 			matched.genes = temp.genes[match(miRNA, temp.genes, nomatch=0)]
 		}#end else
 	} else {
-		count.mat[,i] = temp.table[[7]]
+		miRNA.count.mat[,i] = temp.table[[7]]
 	}#end else
 }#end for (i in 1:length(sampleID))
 
@@ -190,40 +170,68 @@ if (length(matched.genes) != 0){
 	temp.genes = as.character(temp.table[[1]])
 	temp.counts = temp.table[[7]]
 	
-	count.mat[,i] = temp.counts[match(matched.genes, temp.genes, nomatch=0)]
+	miRNA.count.mat[,i] = temp.counts[match(matched.genes, temp.genes, nomatch=0)]
 	}#end for (i in 1:length(sampleID))
 	
 	miRNA = matched.genes
 }#end if (length(matched.genes) != 0)
 
-annotated.counts = data.frame(miRNA,count.mat)
+annotated.counts = data.frame(miRNA,miRNA.count.mat)
 write.table(annotated.counts, file = counts.file, sep="\t", row.names=F, quote=T)
 
 result.file = paste(user.folder,counts.file,sep="/")
 write.table(annotated.counts, file=result.file, row.names=F, quote=F, sep="\t")
 
-miRNA.reads = apply(count.mat, 2, sum)
-percent.miRNA.reads = round(100 * miRNA.reads / aligned.reads, digits=1)
+#aligned reads calculation
+if(aligned.type == "aligned"){
+	aligned.reads = as.numeric(aligned.stat.table$Bowtie.Aligned.Reads)
+} else if(aligned.type =="miRNA"){
+	aligned.reads=apply(miRNA.count.mat, 2, sum)
+} else if(aligned.type =="quantified-other"){
+	aligned.reads=apply(other.count.mat, 2, sum)
+}else {
+	stop("Print CPM_norm must be either 'aligned', 'miRNA', or 'quantified-other'")
+}#end else
 
 total.million.aligned.reads = aligned.reads / 1000000
-CPM = round(t(apply(count.mat, 1, normalizeTotalExpression, totalReads = total.million.aligned.reads)))
-colnames(CPM) = sample.label
 
-trimmed.percent = apply(CPM, 2, trimmed.counts, min.percent=0.3, max.percent=0.95)
+miRNA.reads = apply(miRNA.count.mat, 2, sum)
+percent.miRNA.reads = round(100 * miRNA.reads / aligned.reads, digits=1)
 
-expressed.gene.counts = apply(CPM, 2, count.defined.values, expr.cutoff = min.expression)
-percent.expressed.genes = round( 100 * expressed.gene.counts / nrow(CPM), digits=1)
+other.reads = apply(other.count.mat, 2, sum)
+percent.other.reads = round(100 * other.reads / aligned.reads, digits=1)
+
+#other CPM
+other.cpm.file = gsub(".txt$","_other.txt",cpm.file)
+
+other.CPM = round(t(apply(other.count.mat, 1, normalizeTotalExpression, totalReads = total.million.aligned.reads)))
+colnames(other.CPM) = sample.label
+
+annotated.cpm = data.frame(genes, other.CPM)
+write.table(annotated.cpm, file = other.cpm.file, sep="\t", row.names=F, quote=T)
+
+result.file = paste(user.folder, other.cpm.file, sep="/")
+write.table(annotated.cpm, file=result.file, row.names=F, quote=F, sep="\t")
+
+#miRNA CPM
+miRNA.CPM = round(t(apply(miRNA.count.mat, 1, normalizeTotalExpression, totalReads = total.million.aligned.reads)))
+colnames(miRNA.CPM) = sample.label
+
+trimmed.percent = apply(miRNA.CPM, 2, trimmed.counts, min.percent=0.3, max.percent=0.95)
+
+expressed.gene.counts = apply(miRNA.CPM, 2, count.defined.values, expr.cutoff = min.expression)
+percent.expressed.genes = round( 100 * expressed.gene.counts / nrow(miRNA.CPM), digits=1)
 coverage.table = data.frame(Sample = sample.label, total.reads = total.reads, percent.cutadapt.pass=percent.cutadapt.pass,
 							aligned.reads=aligned.reads, percent.aligned.reads =percent.aligned.reads,
 							percent.miRNA.reads = paste(percent.miRNA.reads,"%",sep=""),
+							percent.exon.reads = paste(percent.other.reads,"%",sep=""),
 							robust.miRNA.count = expressed.gene.counts, robust.miRNA.percent = paste(percent.expressed.genes,"%",sep=""),
 							trimmed.percent=paste(trimmed.percent,"%",sep=""))
-write.table(coverage.table, file="miRNA_coverage_stats_featureCounts.txt", quote=F, row.names=F, sep="\t")
+write.table(coverage.table, file="miRNA_coverage_stats.txt", quote=F, row.names=F, sep="\t")
 
-	
 #tables have different file formats for downstream R analysis versus other applications that involve parsing text files
 #	--> don't set the Result folder to the working directory, or you may skip genes during DEG analysis
-annotated.cpm = data.frame(miRNA, CPM)
+annotated.cpm = data.frame(miRNA, miRNA.CPM)
 write.table(annotated.cpm, file = cpm.file, sep="\t", row.names=F, quote=T)
 
 result.file = paste(user.folder, cpm.file, sep="/")
