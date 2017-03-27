@@ -331,8 +331,8 @@ if(rep.check == 1){
 	if (pvalue.method == "edgeR"){
 		library(edgeR)
 		
-		#can add ', lib.size = rep(1000000,ncol(deg.CPM))' to account for use of CPM values
-		y = DGEList(counts=deg.CPM, genes=miRNA)
+		#can test removing ', lib.size = rep(1000000,ncol(deg.CPM))'
+		y = DGEList(counts=deg.CPM, genes=miRNA, lib.size = rep(1000000,ncol(deg.CPM)))
 		y = estimateCommonDisp(y)
 		if (length(deg.groups) == 1){
 			print("edgeR with 1 variable")
