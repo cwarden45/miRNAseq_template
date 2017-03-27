@@ -121,3 +121,4 @@ Biopython: http://biopython.org/wiki/Biopython
 |pvalue_cutoff|Maximum p-value to consider a gene differenitally expressed|
 |fdr_cutoff|Maximum FDR to consider a gene differentially expressed|
 |interaction| Method for comparing an interaction of two variables.  Can be *model* or *no*|
+|secondary_plot|Set to "continuous" if you wish to plot the second variable as a continuous variable in the differentially expressed miRNA heatmap|
