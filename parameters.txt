@@ -28,3 +28,4 @@ cor_cutoff	0.2
 pvalue_cutoff	0.05
 fdr_cutoff	0.05
 interaction	no
+secondary_plot  discrete
