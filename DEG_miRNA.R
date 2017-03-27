@@ -102,6 +102,7 @@ output.folder = as.character(param.table$Value[param.table$Parameter == "Raw_Cod
 user.folder = as.character(param.table$Value[param.table$Parameter == "Result_Folder"])
 sample.description.file = as.character(param.table$Value[param.table$Parameter == "sample_description_file"])
 cpm.file = as.character(param.table$Value[param.table$Parameter == "cpm_file"])
+trt.group2 = as.character(param.table$Value[param.table$Parameter == "secondary_plot"])
 
 setwd(output.folder)
 
