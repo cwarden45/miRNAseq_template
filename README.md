@@ -70,6 +70,18 @@ DESeq2: https://bioconductor.org/packages/release/bioc/html/DESeq2.html
 
 qvalue: https://bioconductor.org/packages/release/bioc/html/qvalue.html
 
+*Visualization*
+
+gplots: https://cran.r-project.org/web/packages/gplots/index.html
+
+RColorBrewer: https://cran.r-project.org/web/packages/RColorBrewer/index.html
+
+heatmap.3: https://github.com/obigriffith/biostar-tutorials/blob/master/Heatmaps/heatmap.3.R
+
+heatmap.3 example: https://www.biostars.org/p/18211/
+
+IGV / igvtools: http://software.broadinstitute.org/software/igv/
+
 *Reference Build Conversion*
 
 liftOver command line: https://genome-store.ucsc.edu/
