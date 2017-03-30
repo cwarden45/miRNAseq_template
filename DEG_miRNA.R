@@ -793,7 +793,9 @@ if(length(deg.miRNA) > 1){
 		heatmap.file = gsub(":",".",heatmap.file)
 		png(file = heatmap.file)
 		heatmap.3(std.expr, col=colorpanel(33, low="blue", mid="black", high="red"), density.info="none", key=TRUE,
-					RowSideColors=row_annotation, trace="none", margins = c(10,15),RowSideColorsSize=4, dendrogram="both")
+					RowSideColors=row_annotation, trace="none",
+			  		margins = c(15,15), cexCol=1.2,
+			  		RowSideColorsSize=4, dendrogram="both")
 		if((trt.group != "continuous")&(trt.group2 != "continuous")){
 					legend("topright", legend=group.levels,
 							col=color.palette,
