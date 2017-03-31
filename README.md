@@ -92,7 +92,13 @@ genome build chain files (for genome of interest): http://hgdownload.cse.ucsc.ed
 
 TargetScan: http://www.targetscan.org/vert_71/
 
+*conserved_TargetScan_cor.R* is written to work with "Predicted Targets" under [Default predictions (conserved sites of conserved miRNA families)](http://www.targetscan.org/cgi-bin/targetscan/data_download.vert71.cgi)
+
+*custom_TargetScan_cor.R* is written to work with targets downloaded for a particular miRNA of interest
+
 tarBase: http://diana.imis.athena-innovation.gr/DianaTools/index.php?r=tarbase/index
+
+*reformat_tarBase.py* and *custom_tarBase_cor.R* is written to work with targets downloaded for a particular miRNA of interest
 
 *Miscellaneous*
 
