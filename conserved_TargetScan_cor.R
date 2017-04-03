@@ -117,7 +117,7 @@ target.fdr = p.adjust(target.pvalues, "fdr")
 output.table = data.frame(miRNA=paired.miRNA, miRNA.trend=miRNA.trend, target=paired.mRNA,
 						cor.coef = target.cor, cor.lm.pvalue = target.pvalues, cor.lm.fdr = target.fdr)
 output.table = output.table[!is.na(output.table$cor.lm.pvalue),]
-write.table(output.table, file="TargetScan_Conserved_cor.txt", sep="\t", row.names=F)
+#write.table(output.table, file="TargetScan_Conserved_cor.txt", sep="\t", row.names=F)
 
 summary.miRNA = as.character(levels(as.factor(as.character(output.table$miRNA))))
 num.neg.cor = rep(0, times=length(summary.miRNA))
