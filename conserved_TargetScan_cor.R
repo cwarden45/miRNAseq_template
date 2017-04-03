@@ -4,6 +4,7 @@ result.file = "[comp.id]_TargetScan_target_cor.txt"
 
 meta.file = "sample_description.txt"
 miRNA.file = "CPM.txt"
+#code should work with either RNA-Seq or microarray data, but you may need to modify code for specific labels
 mRNA.file = "log2_fpkm.txt"
 target.file = "Predicted_Targets_Info.default_predictions.txt"
 
