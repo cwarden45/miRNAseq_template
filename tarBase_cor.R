@@ -9,15 +9,17 @@ miRNA.file = "CPM.txt"
 mRNA.file = "log2_fpkm.txt"
 
 
+meta.table = read.table(meta.file, head=T, sep="\t")
+sample.labels = as.character(meta.table$userID)
+
 miRNA.table = read.table(miRNA.file, head=T, sep="\t")
 miRNA = as.character(miRNA.table$miRNA)
-miRNA.expr = log2(miRNA.table[,2:ncol(miRNA.table)]+1)
+miRNA.expr = log2(miRNA.table[,match(sample.labels,names(miRNA.table))]+1)
 miRNA.samples = names(miRNA.expr)
 
 mRNA.table = read.table(mRNA.file, head=T, sep="\t")
 genes = as.character(mRNA.table$symbol)
-mRNA.expr = mRNA.table[,match(miRNA.samples, names(mRNA.table))]
-
+mRNA.expr = mRNA.table[,match(sample.labels,names(mRNA.table))]
 
 target.table = read.table(tarbase.target.mapping.file, head=T, sep="\t")
 interactions = paste(target.table[,1],target.table[,2])
