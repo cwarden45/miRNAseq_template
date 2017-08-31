@@ -34,7 +34,7 @@ fileResults = os.listdir(readsFolder)
 
 jobCount = 0
 for file in fileResults:
-	result = re.search("(.*)_L\d{3}_R1_001.fastq$",file)
+	result = re.search("(.*)_S\d+_L\d{3}_R1_001.fastq$",file)
 	
 	if result:
 		jobCount += 1
