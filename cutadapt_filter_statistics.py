@@ -43,7 +43,7 @@ fastqcFolder = readsFolder + "/QC"
 fileResults = os.listdir(readsFolder)
 
 for file in fileResults:
-	result = re.search("(.*)_L\d{3}_R1_001.fastq.gz$",file)
+	result = re.search("(.*)_\S\d+_L\d{3}_R1_001.fastq.gz$",file)
 	
 	if result:
 		sample = result.group(1)
