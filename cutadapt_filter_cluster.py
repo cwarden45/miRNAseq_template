@@ -81,6 +81,7 @@ for file in fileResults:
 			trim2 = cutadaptFolder + "/" + sample + "_R1_cutadapt.fastq"
 	
 			#can add '--max-n 0' to remove degenerate nucleotides
+			#use CGGGTGCCAAGGAACTCC instead of TCTGGAATTCTCGGGTGCCAAGGAACTCC?
 			text = "/home/"+user+"/.local/bin/cutadapt -a TCTGGAATTCTCGGGTGCCAAGGAACTCC -m 16 " +  trim1 + " > " + trim2  + "\n"
 			outHandle.write(text)
 

@@ -69,20 +69,22 @@ for file in fileResults:
 		if (sample not in finishedSamples):
 			print sample
 			shellScript = sample + ".sh"
-			text = "qsub " + shellScript + "\n"
+			text = "sbatch " + shellScript + "\n"
 			masterHandle.write(text)
 
 			outHandle = open(shellScript, "w")
 			text = "#!/bin/bash\n"
-			text = text + "#$ -M "+email+"\n"
-			text = text + "#$ -m bea\n"
-			text = text + "#$ -N miB"+str(jobCount)+"\n"
-			text = text + "#$ -q all.q\n"
-			text = text + "#$ -l vf=4G\n"
-			text = text + "#$ -j yes\n"
-			text = text + "#$ -o miB"+str(jobCount)+".log\n"
-			text = text + "#$ -cwd\n"
-			text = text + "#$ -V\n"
+			text = text + "#SBATCH -J miB"+str(jobCount)+"\n"
+			text = text + "#SBATCH --mail-type=ALL\n"
+			text = text + "#SBATCH --mail-user="+email+"\n"
+			text = text + "#SBATCH -n 1\n"#one thread
+			text = text + "#SBATCH -N 1\n"
+			text = text + "#SBATCH --mem=4g\n"
+			text = text + "#SBATCH --time=24:00:00\n"
+			text = text + "#SBATCH --output=miB"+str(jobCount)+".log\n\n"
+			
+			text = text + "module load Bowtie/1.2.2\n"
+			text = text + "module load samtools/1.6\n\n"
 			outHandle.write(text)
 				
 			outputSubfolder = alignmentFolder +"/" + sample
@@ -98,12 +100,11 @@ for file in fileResults:
 									
 			alnBam = outputSubfolder + "/aligned.bam"
 			#can add "-F 4" to exclude unaligned reads
-			text = "samtools view -bS " + alnSam + " > " + alnBam + "\n"
+			text = "/opt/SAMtools/1.6/bin/samtools view -bS " + alnSam + " > " + alnBam + "\n"
 			outHandle.write(text)
 			
 			userBam = alignmentFolder + "/" + sample + ".bam"
-			sortPrefix = re.sub(".bam$","",userBam)
-			text = "samtools sort " + alnBam + " " + sortPrefix + "\n"
+			text = "/opt/SAMtools/1.6/bin/samtools sort -o " + userBam + " " + alnBam + "\n"
 			outHandle.write(text)
 			
 			text = "rm " + alnSam + "\n"
@@ -112,11 +113,11 @@ for file in fileResults:
 			text = "rm " + alnBam + "\n"
 			outHandle.write(text)
 			
-			text = "samtools index " + userBam + "\n"
+			text = "/opt/SAMtools/1.6/bin/samtools index " + userBam + "\n"
 			outHandle.write(text)
 			
 			statFile = outputSubfolder + "/flagstat.txt"	
-			text = "samtools flagstat " + userBam + " > "+statFile+"\n"
+			text = "/opt/SAMtools/1.6/bin/samtools flagstat " + userBam + " > "+statFile+"\n"
 			outHandle.write(text)
 			
 			text = "gzip " + read1
