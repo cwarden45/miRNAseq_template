@@ -1,6 +1,6 @@
 ### Acknowledgements ###
 
-Code developed when providing analysis support from the City of Hope Integrative Genomics Core with requests / suggestions from *Yuan Yuan MD/PhD* (re-analysis with different scripts after other IGC staff), *Susan Neuhausen* (early re-analysis with different scripts, after/before other IGC staff), and *[External Collaborator B]* (currently, did not want to be explicitly acknowledged here).
+Code developed when providing analysis support from the City of Hope Integrative Genomics Core with requests / suggestions from *Yuan Yuan MD/PhD* (re-analysis with different scripts after other IGC staff), *Susan Neuhausen* (early re-analysis with different scripts, after/before other IGC staff), and *[External Collaborator B]* (*currently, did not want to be explicitly acknowledged here*).
 
 I would also like to thank the following users that gave us permission to acknowledge these templates (or scripts similar to these templates) were used for analysis of their data: *Luke Gruenert* ([Onconetics](http://onconetics.com/), collaboration with David Salzman at [sRNAlytics](https://www.srnalytics.com/) helped me realize original, untrimmed reads had barcode to alleviate ligation bias, as described in [Sun et al. 2011](https://www.ncbi.nlm.nih.gov/pubmed/22016383)), *Shiuan Chen* (collaboration with Susan Neuhausen), *Rahul Jandial* (with lab member Khairul Ansari), and *Sharad Singhal*.  There was also **1** other external collaborator that requested to not be acknowledged here (for this particular data type, at this time).
 
