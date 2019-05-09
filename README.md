@@ -113,6 +113,8 @@ TargetScan: http://www.targetscan.org/vert_71/
 
 tarBase: http://diana.imis.athena-innovation.gr/DianaTools/index.php?r=tarbase/index
 
+PhenomiR: http://mips.helmholtz-muenchen.de/phenomir/index.gsp
+
 IPA microRNA Target Filter: https://www.qiagenbioinformatics.com/products/features/microrna-target-filter/
 
 *Miscellaneous*
