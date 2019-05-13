@@ -107,11 +107,13 @@ liftOver command line: https://genome-store.ucsc.edu/
 
 genome build chain files (for genome of interest): http://hgdownload.cse.ucsc.edu/downloads.html
 
-*miRNA Targets*
+*miRNA Targets / Functional Association*
 
 TargetScan: http://www.targetscan.org/vert_71/
 
 tarBase: http://diana.imis.athena-innovation.gr/DianaTools/index.php?r=tarbase/index
+
+RNAcentral: https://rnacentral.org/ (includes GO categories and publications)
 
 PhenomiR: http://mips.helmholtz-muenchen.de/phenomir/index.gsp
 
